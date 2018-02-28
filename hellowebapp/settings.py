@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'collection', # this is the app we added
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
