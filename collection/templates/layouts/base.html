@@ -14,10 +14,16 @@
 				<li><a href="{% url 'home' %}">Home</a></li>
 				<li><a href="{% url 'about' %}">About</a></li>
 				<li><a href="{% url 'contact' %}">Contact</a></li>
+				{% if user.is_authenticated %}
+					<li><a href="{% url 'auth_logout' %}">Logout</a></li>
+				{% else %}
+					<li><a href="{% url 'auth_login' %}">Login</a></li>
+					<li><a href="{% url 'registration_register' %}">Register</a></li>
+				{% endif %}
 			</ul>
 		</nav>
 	</header>
-	{% block content %}{% endblock %}
-	{% block footer %}{% endblock %} 
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
 </body>
 </html>
