@@ -2,6 +2,9 @@
 {% block title %}Homepage - {{ block.super }}{% endblock %}
 {% block content %}
 	<h1>Hello, World!</h1>
-	<!-- passing in a variable to test djano possibilities -->
-	<p>{{ number }}</p>
+	<!-- displaying all instances of thing in our db -->
+	{% for thing in things %}
+	<h2>{{ thing.name }}</h2>
+	<p>{{ thing.description }}</p>
+	{% endfor %}
 {% endblock %}
