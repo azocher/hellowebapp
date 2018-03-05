@@ -47,3 +47,24 @@ def edit_thing(request, slug):
 			'thing': thing,
 			'form': form,
 		})
+
+def create_thing(request):
+	form_class = ThingForm
+
+	if request.method == 'POST':
+
+		form = form_class(request.POST)
+		if form.is_valid():
+
+			thing = form.save(commit=False)
+			thing.user = request.user
+			thing.slug = slugify(thing.name)
+			thing.save()
+
+			return redirect('thing_detail', slug=thing.slug)
+
+	else:
+		form = form_class()
+		return render(request, 'things/create_thing.html', {
+			'form': form,
+		})
