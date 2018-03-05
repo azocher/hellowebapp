@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from collection.forms import ThingForm
 from collection.models import Thing
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 # Create your views here.
 def index(request):
@@ -22,10 +24,14 @@ def thing_detail(request, slug):
 		'thing': thing,
 	})
 
+@login_required
 def edit_thing(request, slug):
 	# grab our object
 	thing = Thing.objects.get(slug=slug)
 
+	#check to see if logged in user same as owner of thing
+	if thing.user != request.user:
+		raise Http404
 	# set the form we are using
 	form_class = ThingForm
 
