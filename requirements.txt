@@ -51,3 +51,5 @@ scipy==0.13.0b1
 six==1.4.1
 xattr==0.6.4
 zope.interface==4.1.1
+hellowebapp-deploy
+psycopg2==2.6.1
